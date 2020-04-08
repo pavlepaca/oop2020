@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Dodavanje nove patike</title>
+        <link href="https://fonts.googleapis.com/css?family=Roboto|Courgette|Pacifico:400,700" rel="stylesheet">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+        <link href="../css/novaPatika.css" rel="stylesheet">
+</head>
+<body ng-app="Aplikacija" ng-controller="ListaPatika as lt">
+        <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2 m-auto">
+                        <div class="contact-form">
+                            <h1>Dodavanje nove patike</h1>
+                            <form ng-submit = "lt.dodajNovuPatiku()">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="inputNaziv">Naziv</label>
+                                            <input type="text" class="form-control" name="naziv"  ng-required="true" ng-model="lt.novaPatika.naziv" placeholder="naziv">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="inputBrend">Brend</label>
+                                            <input type="text" class="form-control" name="brend" ng-required="true" ng-model="lt.novaPatika.brend" placeholder="brend">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="inputCena">Cena</label>
+                                                <input type="number" class="form-control" name="cena" ng-required="true" ng-model="lt.novaPatika.cena" placeholder="cena">
+                                            </div>
+                                        </div>
+                                </div>            
+                                <div class="form-group">
+                                    <label for="inputSlika">Slika</label>
+                                    <input type="text" class="form-control" name="slika" ng-required="true" ng-model="lt.novaPatika.slika" placeholder="slika">
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputMessage">Namena</label>
+                                    <textarea class="form-control" name="namena" ng-required="true" ng-model="lt.novaPatika.namena" placeholder="namena" rows="5" required></textarea>
+                                </div>
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-primary"><i class="fa fa-paper-plane"></i> Postavite novu patiku</button>
+                                </div>            
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+    <script src="../js/angularjs/angular.min.js"></script>
+    <script src="../app/app.js"></script>
+    <script src="../app/prodavnica_patika/patike_prodavnica.js"></script>
+</body>
+</html>

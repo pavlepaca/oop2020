@@ -1,0 +1,197 @@
+<!DOCTYPE>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Naslovna</title>
+    <link href="../css/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+
+<body ng-app="Aplikacija" ng-controller="ListaPatika as lt" class="patike">
+    <!-- Meni preuzet iz primera: http://getbootstrap.com/docs/4.0/examples/starter-template/ -->
+
+
+
+<div ng-controller="ListaKorisnika as lk">
+    <!-- Navigacioni meni pocetak-->
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top" >
+        <div class="collapse navbar-collapse" id="navbar">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/pocetna">Početna
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li ng-if="lk.korisnik.admin == false" class="nav-item" >
+                        <a class="nav-link" href="#" ng-click="lk.pripremiZaIzmenuKorisnika(lk.korisnik)">Nalog</a>
+                    </li>
+                <li ng-if="lk.korisnik.admin == true" class="nav-item">
+                        <a class="nav-link" href="/dodavanjeNovePatike">Dodaj patiku</a>
+                    </li>
+                <li class="nav-item">
+                        <a class="nav-link" href="#" ng-click="lt.rastuce()">Sortiraj rastuce</a>
+                    </li>
+                <li class="nav-item">
+                        <a class="nav-link" href="#" ng-click="lt.opadajuce()">Sortiraj opadajuce</a>
+                    </li>    
+                <li class="nav-item"><a class="nav-link" href="/" ng-click="lt.izlogujSe()">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+    <!-- Navigacioni meni kraj -->
+
+
+
+        <div class="container" >
+        
+            <input type="text" ng-model="searchText" placeholder="Trazite patike.." > 
+
+
+            <!--za prikaz izmene patike-->
+            <div class="container" id="izmenaPatike" style="display: none;">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2 m-auto">
+                        <div class="contact-form">
+                            <h1>Izmena podataka patike</h1>
+                            <form ng-submit = "lt.izmeniPatiku()">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="inputNaziv">Naziv</label>
+                                            <input type="text" class="form-control" name="naziv"  ng-required="true" ng-model="lt.zaIzmenuPatike.naziv" value="lt.zaIzmenuPatike.naziv" placeholder="naziv">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="inputBrend">Brend</label>
+                                            <input type="text" class="form-control" name="brend" ng-required="true" ng-model="lt.zaIzmenuPatike.brend" value="lt.zaIzmenuPatike.brend" placeholder="brend">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="inputCena">Cena</label>
+                                                <input type="number" class="form-control" name="cena" ng-required="true" ng-model="lt.zaIzmenuPatike.cena" value="lt.zaIzmenuPatike.cena"  placeholder="cena">
+                                            </div>
+                                        </div>
+                                </div>            
+                                <div class="form-group">
+                                    <label for="inputSlika">Slika</label>
+                                    <input type="text" class="form-control" name="slika" ng-required="true" ng-model="lt.zaIzmenuPatike.slika" value="lt.zaIzmenuPatike.slika" placeholder="slika">
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputMessage">Message</label>
+                                    <textarea class="form-control" name="namena" ng-required="true" ng-model="lt.zaIzmenuPatike.namena" value="lt.zaIzmenuPatike.namena"  placeholder="namena" rows="5" required></textarea>
+                                </div>
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-primary"><i class="fa fa-paper-plane"></i> Izmenite postojecu patiku</button>
+                                </div>            
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Div za menjanje podataka naloga-->
+            <div class="container" id="izmenaKorisnika" style="display: none;">
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2 m-auto">
+                            <div class="contact-form">
+                                <h1>Izmena naloga </h1>
+                                <form ng-submit = "lk.izmeniKorisnika()">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="inputKorisnickoIme">Korisnicko ime</label>
+                                                <input type="text" class="form-control" name="korisnicko_ime"  ng-required="true" ng-model="lk.zaIzmenuKorisnika.korisnicko_ime" value="lk.zaIzmenuKorisnika.korisnicko_ime" placeholder="korisnicko_ime">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="inputLozinka">Lozinka</label>
+                                                <input type="text" class="form-control" name="lozinka" ng-required="true" ng-model="lk.zaIzmenuKorisnika.lozinka" value="lk.zaIzmenuKorisnika.lozinka" placeholder="lozinka">
+                                            </div>
+                                        </div>
+               
+                                    </div>   
+                                    <div class="form-group">
+                                            <label for="inputIme">Ime</label>
+                                            <input type="text" class="form-control" name="ime" ng-required="true" ng-model="lk.zaIzmenuKorisnika.ime" value="lk.zaIzmenuKorisnika.ime"  placeholder="ime">
+                                        </div>         
+                                    <div class="form-group">
+                                        <label for="inputPrezime">Prezime</label>
+                                        <input type="text" class="form-control" name="prezime" ng-required="true" ng-model="lk.zaIzmenuKorisnika.prezime" value="lk.zaIzmenuKorisnika.prezime" placeholder="prezime">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputAdresa">Adresa</label>
+                                        <input type="text" class="form-control" name="adresa" ng-required="true" ng-model="lk.zaIzmenuKorisnika.adresa" value="lk.zaIzmenuKorisnika.adresa"  placeholder="adresa" >
+                                    </div>
+                                    <div class="form-group">
+                                            <label for="inputEmail">Email</label>
+                                            <input type="text" class="form-control" name="email" ng-required="true" ng-model="lk.zaIzmenuKorisnika.email" value="lk.zaIzmenuKorisnika.email" placeholder="email">
+                                        </div>
+                                        <div class="form-group">
+                                                <label for="inputTelefon">Telefon</label>
+                                                <input type="text" class="form-control" name="telefon" ng-required="true" ng-model="lk.zaIzmenuKorisnika.telefon" value="lk.zaIzmenuKorisnika.telefon" placeholder="telefon">
+                                            </div>
+                                    <div class="text-center">
+                                        <button type="submit" class="btn btn-primary"><i class="fa fa-paper-plane"></i> Izmenite vase podatke</button>
+                                    </div>            
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            
+            
+            <br>
+            <br> 
+            <div  class="row" ng-controller="ListaKupovina as ll">
+              <div class="col-sm-4" ng-repeat="k in lt.patike | filter : searchText | orderBy: lt.sort ">
+                <div class="panel panel-primary">
+                  <div class="panel-heading">{{k.naziv}}</div>
+                  <div class="panel-body"><img ng-src="{{k.slika}}" class="img-responsive" style="width:60%; height:40%;" alt="Image"></div>
+                  <div class="panel-footer"></div>
+                  <div class="panel-footer">Cena patike: {{k.cena}}</div>
+                  <button ng-if="lk.korisnik.admin == false"  type="button" class="btn btn-primary" ng-click="ll.dodajKupovinu(k)" ng-mouseover="lt.dodajIdPatike(k)">Kupi </button>
+                  <button ng-if="lk.korisnik.admin == true" type="button" class="w3-bar-item w3-button w3-teal" ng-click="lt.pripremiZaIzmenuPatike(k)"> Izmeni</button>
+                <button ng-if="lk.korisnik.admin == true" type="button" class="w3-bar-item w3-button w3-red" ng-click="lt.ukloniPatiku(k.id)"> Obrisi</button>
+                </div>
+              </div>  
+              
+
+    </div>
+
+</div>
+   
+
+    
+
+
+
+<!--##################################################################################################################################################################################-->
+
+    
+
+
+
+    <script src="../js/jquery/jquery-3.2.1.min.js"></script>
+    <script src="../js/popper.js/popper.min.js"></script>
+    <script src="../js/bootstrap/bootstrap.min.js"></script>
+
+    <script src="../js/angularjs/angular.min.js"></script>
+    <script src="../app/app.js"></script>
+    <script src="../app/prodavnica_patika/patike_prodavnica.js"></script>
+
+
+
+    
+</body>
+
+
+
+</html>

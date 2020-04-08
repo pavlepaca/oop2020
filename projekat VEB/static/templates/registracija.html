@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+<title>Registracija korisnika</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+<link href="../css/registracija.css" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+</head>
+<body ng-app="Aplikacija" ng-controller="ListaKorisnika as lk">
+    <div class="signup-form">
+        <form ng-submit = "lk.dodajNovogKorisnika()" >
+            <h2>Registracija</h2>
+            <p class="hint-text">Napravite nalog za shoes shop</p>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-xs-6"><input type="text" class="form-control" name="ime" ng-required="true" ng-model="lk.noviKorisnik.ime" placeholder="Ime"></div>
+                    <div class="col-xs-6"><input type="text" class="form-control" name="prezime" ng-required="true" ng-model="lk.noviKorisnik.prezime" placeholder="Prezime"></div>
+                </div>        	
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" name="korisnicko_ime"  ng-required="true" ng-model="lk.noviKorisnik.korisnicko_ime" placeholder="Korisnicko ime">
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" name="lozinka" ng-required="true" ng-model="lk.noviKorisnik.lozinka" placeholder="Lozinka">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" name="adresa" ng-required="true" ng-model="lk.noviKorisnik.adresa" placeholder="Adresa">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" name="email" ng-required="true" ng-model="lk.noviKorisnik.email" placeholder="Email">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" name="telefon" ng-required="true" ng-model="lk.noviKorisnik.telefon" placeholder="Telefon">
+            </div>       
+            
+            <div class="form-group">
+                <button type="submit" class="btn btn-success btn-lg btn-block">Registruj se</button>
+            </div>
+        </form>
+        <div class="text-center">Vec imate nalog? <a href="/pocetna">Ulogujte se</a></div>
+    </div>
+
+
+    
+
+        <script src="../js/angularjs/angular.min.js"></script>
+        <script src="../app/app.js"></script>
+        <script src="../app/prodavnica_patika/patike_prodavnica.js"></script>
+</body>
+</html>
